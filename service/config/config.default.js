@@ -1,5 +1,7 @@
 /* eslint valid-jsdoc: "off" */
 
+const { TurnedIn } = require("@mui/icons-material");
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -44,12 +46,17 @@ module.exports = appInfo => {
   config.security={
     crf:{
       enable:false
-    },
+    },csrf: {
+      enable: true,
+      ignoreJSON: false,
+  },
     domainWhiteList:['*']
   };
 
   config.cors = {
+    // origin:'http://localhost:5174/',
     origin:'*',
+    credentials:true,//允许cookie 跨域
     allowMethods:'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
   };
 

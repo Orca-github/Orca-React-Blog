@@ -5,12 +5,18 @@ import '../static/css/Login.css'
 // import Button from '@mui/material/Button';
 
 import { Card, CardActions, CardMedia, CardContent, Button, Backdrop, CircularProgress, TextField, Stack, Typography } from '@mui/material'
-import { AccountCircle, Password } from '@mui/icons-material'
+import { AccountCircle, AlternateEmail, Password } from '@mui/icons-material'
+
+import servicePath from '../config/apiUrl'
+import axios from 'axios'
+import Alert from '@mui/material/Alert'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Login() {
 
     const [userName, setUserName] = useState('')
-    const [psw, setPsw] = useState('')
+    const [password, setPassword] = useState('')
     const [isLoading, setInLoding] = useState(false)
 
     //用于 loading效果
@@ -23,12 +29,82 @@ export default function Login() {
 
     };
 
+    const navigate = new useNavigate()
     //匹配用户
+    const [emUSer, setEmUser] = useState(false);
+    const [emPws, setEmPws] = useState(false);
+    const [loginPass, setLoginPass] = useState(false);
+
+
     const checkLogin = () => {
+        //reset alter message
+        setLoginPass(false)
+        setEmUser(false)
+        setEmPws(false)
+
+        if (!userName) {
+            {/**打开loading效果 */ }
+            setOpen(true);
+            setTimeout(() => {
+                setOpen(false)
+                setEmUser(true)
+            }, 500);
+            return false
+
+        } else if (!password) {
+            setOpen(true);
+            setTimeout(() => {
+                setOpen(false)
+                setEmPws(true)
+            }, 500);
+
+            return false
+        }
+
+        {/**打开loading效果 */ }
         setOpen(true);
-        setTimeout(() => {
-            setOpen(false);
-        }, 1000)
+        let dataProps = {
+            'userName': userName,
+            'password': password
+        }
+
+        const fetchData = async () => {
+
+            //设置csrf
+            const response = await axios.get('/api/getCsrfToken');
+            const csrfToken = response.data.csrfToken;
+            try {
+                //请求连接
+                axios({
+                    method: 'post',
+                    url: servicePath.checkLogin,
+                    data: dataProps,
+                    headers: {
+                        'x-csrf-token': csrfToken, // 如果 CSRF token 是放在请求头中
+                    },
+                    //下面这个设置是前后端共享session
+                    withCredentials: true
+                }).then(
+                    res => {
+                        setOpen(false);
+                        if (res.data.data == 'Login successful') {
+                            localStorage.setItem('openID', res.data.openId)
+                            navigate('/admin')
+                        } else {
+                            setTimeout(() => {
+                                setOpen(false)
+                                setLoginPass(true)
+                            }, 500);
+                        }
+                    }
+                )
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }
 
 
@@ -60,7 +136,13 @@ export default function Login() {
                             label={<Password />}
                             color="secondary" focused
                             placeholder='Enter your password'
-                            onChange={(e) => { setUserName(e.target.value) }} />
+                            onChange={(e) => { setPassword(e.target.value) }} />
+                        {/**显示警告 */}
+                        {emUSer && <Alert severity="error" onClose={() => { setEmUser(false) }}>User name can not be null </Alert>}
+                        {emPws && <Alert severity="error" onClose={() => { setEmPws(false) }}>Password can not be null </Alert>}
+                        {loginPass && <Alert severity="error">User name and password error </Alert>
+                        }
+
                     </Stack>
                 </CardContent>
                 <CardActions>
