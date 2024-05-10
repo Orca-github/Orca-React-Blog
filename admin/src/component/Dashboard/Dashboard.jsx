@@ -25,6 +25,8 @@ import Orders from './Order';
 import Deposits from './Deposits';
 import AddArticle from '../../pages/AddArticle';
 
+import { NavLink, Outlet } from 'react-router-dom'
+
 
 //版权
 function Copyright(props) {
@@ -99,7 +101,7 @@ export default function Dashboard() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', minHeight: '100vh' }}  >
         <CssBaseline />
         {/**顶栏 */}
         <AppBar position="absolute" open={open}>
@@ -169,16 +171,28 @@ export default function Dashboard() {
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
-            height: '100vh',
+            // height: '100vh',
             overflow: 'auto',
+            display: 'flex',
           }}
         >
           {/**相当于占位符 */}
-          <Toolbar />
 
-          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-            <AddArticle />
-            <Copyright sx={{ pt: 4 }} />
+
+          <Container maxWidth='xl' sx={{ 
+            display: 'flex',
+             flexDirection: 'column', 
+             minHeight: 'calc(100vh - 64px)',
+            //  mt: 4, 
+            //  mb: 4 
+             }}>
+            <Toolbar />
+            <Toolbar />
+            {/* <AddArticle /> */}
+            <Box sx={{ flexGrow: 1 }}>
+              <Outlet />
+            </Box>
+            <Copyright sx={{ pt: 4, pb: 2, flexShrink: 0 }} />
           </Container>
         </Box>
       </Box>

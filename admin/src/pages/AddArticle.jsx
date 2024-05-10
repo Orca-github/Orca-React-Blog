@@ -11,6 +11,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -22,9 +24,11 @@ import '../static/css/AddArticle.css'
 import servicePath from '../config/apiUrl'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { Maximize } from '@mui/icons-material';
+import { ForAxios, ForAxiosCsrf } from '../component/ForAxios';
 
 
-export default function AddArticle() {
+export default function AddArticle(props) {
     const [markText, setMarText] = useState([])
 
     const [articleId, setArticleId] = useState(0)  // 文章的ID，如果是0说明是新增加，如果不是0，说明是修改
@@ -47,6 +51,13 @@ export default function AddArticle() {
     useEffect(() => {
         //获得文章分类信息
         getTypeInfo()
+        console.log("prop is ", props)
+        let tmpId = props.match.params.id
+        if(tmpId){
+            setArticleId(tmpId)
+            getArticleByID(tmpId)
+        }
+        //获取文章ID
     }, [])
 
     //受控 改变内容markdown
@@ -137,7 +148,7 @@ export default function AddArticle() {
             }
 
             //修改
-        } else{
+        } else {
             dataProps.id = articleId
             const response = await axios.get('/api/getCsrfToken');
             const csrfToken = response.data.csrfToken;
@@ -171,7 +182,7 @@ export default function AddArticle() {
 
         }
 
-       
+
 
     }
 
@@ -221,10 +232,28 @@ export default function AddArticle() {
     }
 
 
-    return (
-        <>
-            <Grid container spacing={1}>
 
+    async function getArticleByID() {
+        try {
+            const response = await ForAxiosCsrf('get', servicePath.getArticleById + id);
+            const articleInfo = response.data.data[0]
+            setArticleTitle(articleInfo.title)
+            setArticleContent(articleInfo.article_content)
+            setMarkdownContent(articleInfo.article_content)
+            setIntroducemd(articleInfo.introduce)
+            setIntroducehtml(articleInfo.introduce)
+            setShowDate(articleInfo.addTime)
+            setSelectType(articleInfo.typeId)
+        } catch (error) {
+            console.error('Failed to fetch data:', error);
+        }
+    }
+
+
+
+    return (
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <Grid container spacing={1} sx={{ flex: 1 }} >
                 {/* 文章标题*/}
                 <Grid item xs={8} >
                     <Paper
@@ -284,30 +313,34 @@ export default function AddArticle() {
                 </Grid>
 
                 {/*输入文章内容*/}
-                <Grid item xs={5}  >
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: '80vh' }}>
+                <Grid item xs={5} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Paper sx={{ p: 2, flex: 1 }}>
+                        <Box sx={{ flex: 1, display: 'flex' }}>
 
-                        <TextField id='BlogText'
-                            fullWidth
-                            multiline
-                            color="secondary" focused
-                            placeholder='Blog Title'
-                            rows={37}
-                            onChange={changeContent}
-                        />
+                            <TextField id='BlogText'
+                                fullWidth
+                                multiline
+                                color="secondary" focused
+                                placeholder='Blog Title'
+                                sx={{ flex: 1 }}
+                                rows={39}
+                                onChange={changeContent}
+                            />
+                        </Box>
+
                     </Paper>
                 </Grid>
                 {/*预览文章内容*/}
-                <Grid item xs={5}>
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', minHeight: '80vh' }}>
+                <Grid item xs={5} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Paper sx={{ p: 2, flex: 1 }}>
                         <div className='show-html'>
                             <MarkdownRenderer markdownText={markdownContent} />
                         </div>
                     </Paper>
                 </Grid>
 
-                <Grid item xs={2}>
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', minHeight: '80vh' }}>
+                <Grid item xs={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Paper sx={{ p: 2, flex: 1 }}>
                         <Stack spacing={2}>
                             {/**缓存 /提交 */}
                             <Stack direction={{ md: 'column', lg: 'row' }}
@@ -353,6 +386,6 @@ export default function AddArticle() {
                 </Grid>
 
             </Grid>
-        </>
+        </Box>
     )
 }
