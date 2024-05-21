@@ -78,7 +78,7 @@ export default function header() {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6}>
             <span className='header-logo'>Orca</span>
-            <span className='header-txt'>xxxxxxx</span>
+            <span className='header-txt'>Blog</span>
           </Grid>
           <Grid item xs={6}>
 

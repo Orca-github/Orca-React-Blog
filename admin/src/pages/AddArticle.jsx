@@ -23,7 +23,7 @@ import '../static/css/AddArticle.css'
 
 import servicePath from '../config/apiUrl'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate ,useParams} from 'react-router-dom'
 import { Maximize } from '@mui/icons-material';
 import { ForAxios, ForAxiosCsrf } from '../component/ForAxios';
 
@@ -45,17 +45,16 @@ export default function AddArticle(props) {
     const [isLoading, setIsLoadding] = useState(false) //是否显示加载
     const [submitAlerts, setSubmitAlerts] = useState(false);//提交时显示警告
     const [alterMessage, setAlterMessage] = useState({ message: '', type: 'warning' })//警告的消息
+    const {id} = useParams()
 
 
     //加载时
     useEffect(() => {
         //获得文章分类信息
         getTypeInfo()
-        console.log("prop is ", props)
-        let tmpId = props.match.params.id
-        if(tmpId){
-            setArticleId(tmpId)
-            getArticleByID(tmpId)
+        if(id){
+            setArticleId(id)
+            getArticleByID(id)
         }
         //获取文章ID
     }, [])
@@ -232,14 +231,14 @@ export default function AddArticle(props) {
     }
 
 
-
+//按照id获取文章内容
     async function getArticleByID() {
         try {
             const response = await ForAxiosCsrf('get', servicePath.getArticleById + id);
             const articleInfo = response.data.data[0]
             setArticleTitle(articleInfo.title)
-            setArticleContent(articleInfo.article_content)
-            setMarkdownContent(articleInfo.article_content)
+            setArticleContent(articleInfo.content)
+            setMarkdownContent(articleInfo.content)
             setIntroducemd(articleInfo.introduce)
             setIntroducehtml(articleInfo.introduce)
             setShowDate(articleInfo.addTime)
@@ -324,6 +323,7 @@ export default function AddArticle(props) {
                                 placeholder='Blog Title'
                                 sx={{ flex: 1 }}
                                 rows={39}
+                                value={articleContent}
                                 onChange={changeContent}
                             />
                         </Box>
@@ -371,13 +371,14 @@ export default function AddArticle(props) {
                                 placeholder='Blog Introduce'
                                 rows={4}
                                 onChange={changeIntoruce}
+                                value={introducemd}
                             />
                             {/**预览 */}
                             <div className='introduce-html' ><MarkdownRenderer markdownText={introducehtml} /> </div>
                             {/**日期 */}
                             <div className='data-select'>
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DatePicker onChange={(newValue) => { setShowDate(newValue) }} />
+                                    <DatePicker  onChange={(newValue) => { setShowDate(newValue) }} />
                                 </LocalizationProvider>
                             </div>
                         </Stack>
