@@ -41,18 +41,6 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     };
 }); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
-//定义markdown
-// const MarkdownRenderer = ({ markdownText  }) => {
-//     // console.log('打印md fun 里面',markdownText )
-//     const getMarkdownText = () => {
-//       const rawMarkup = marked(markdownText );
-//       return { __html: rawMarkup };
-//     };
-
-//     return <div dangerouslySetInnerHTML={getMarkdownText()} />;
-//   };
-
-
 //返回
 export default function Detail() {
     const { id } = useParams()
@@ -73,8 +61,6 @@ export default function Detail() {
 
         fetchData();
     }, []); // 空数组作为第二个参数表示仅在组件挂载后执行一次
-
-    //   console.log('mylist',myList)
 
     return (
         <Box className='comm-main' sx={{ flexGrow: 1 }} >
@@ -114,13 +100,11 @@ export default function Detail() {
                     </div>
 
                 </Grid>
-                <Grid className="comm-right" xs={4} >
+                <Grid className="comm-right" xs={4}>
                     <Author />
-                    <div className='article-menu'>
+                    <div className='article-menu'  >
                         <div className='nav-title'>Outline</div>
-                        {/* <TOC className='article-menu-item' markdown={markdown}  scrollAlign='start'/> */}
-                        <MarkNav className='article-menu-item' source={myList.content}
-                            // headingTopOffset={10}
+                        <MarkNav className='article-menu-item' source={myList.content} 
                             ordered={false}
 
                         />

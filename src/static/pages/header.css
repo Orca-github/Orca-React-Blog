@@ -1,5 +1,5 @@
 .header{
-    background-color: rgba(184, 120, 196, 0.299);
+    /* background-color: rgba(184, 120, 196, 0.299); */
     padding: .4rem;
     overflow: hidden;
     height: 2.8rem;
@@ -10,6 +10,7 @@
     top: 0;
     z-index: 1000;
     box-sizing: border-box;
+    background-image: linear-gradient(to top, #f3e7e9ec 0%, #e3eeffea 99%, #e3eeffec 100%);
 }
 
 .header-logo{
@@ -20,7 +21,7 @@
 
 .header-txt{
     font-size: .6rem;
-    color: #999;
+    color: #999999b9;
     display: inline-block;
     padding-left:.3rem ;
 }

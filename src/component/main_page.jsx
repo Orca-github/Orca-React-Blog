@@ -34,21 +34,4 @@ const MainPage=()=> {
 
 export default MainPage
 
-// export default function MainPage() {
-
-
-//   return (
-//     <Box className='comm-main'  sx={{ flexGrow: 1 }} >
-//       <Grid container spacing={0.5} columns={16} justifyContent="center" >
-//         <Grid className='comm-left' xs={8}>
-//           {/* <NavLink to ="/list">List</NavLink> */}
-//           <Mian_left/>
-//         </Grid>
-//         <Grid className="comm-right" xs={4}>
-//           <Author/>
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// }
 

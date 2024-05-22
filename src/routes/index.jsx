@@ -6,7 +6,6 @@ import Detail from '../component/Detail'
 import ArticlePage from '../component/ArticlePage'
 import TypeId_List from '../component/TypeId_List'
 import FullScreen from '../component/Home/FullScreen'
-import Background from '../containers/Background'
 
 export default [
 
@@ -25,12 +24,9 @@ export default [
         element:<Detail/>
     }
     ,{ path: '/index', element: <FullScreen /> }
-    // ,{ path: '/index', element:<Background />}
 
-    // ,{ path: '/', element: <MainPage /> }
 
     ,{ path: '/', element: <FullScreen /> }
-    // ,{ path: '/', element: <Background /> }
 
 
     ,{ path: '*', element: <Navigate to="/" /> } 

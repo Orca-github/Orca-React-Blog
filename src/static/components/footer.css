@@ -2,5 +2,22 @@
     text-align: center;
     width: 100%;
     padding: 1rem;
-    color: #888;
+    color: #3d3b3b;
+    background-image: linear-gradient(135deg, #a8ede9c1 , #fed6e3bf , #eaccf8c1, #9890e3c8 );
+    font-size: 14px;
+    background-size: 500%;
+    animation: gradient-move 15s linear infinite;
+
 }
+
+@keyframes gradient-move {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+      }
+    100% {
+      background-position: 0% 50%;
+    }
+  }

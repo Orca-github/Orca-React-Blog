@@ -1,4 +1,4 @@
-import {marked} from 'marked';
+import { marked } from 'marked';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/monokai-sublime.css'
 
@@ -21,15 +21,15 @@ marked.setOptions({
   smartLists: true,
   smartypants: false,
   xhtml: false,
-  highlight:function(code){
-            return hljs.highlightAuto(code).value
-        }
+  highlight: function (code) {
+    return hljs.highlightAuto(code).value
+  }
 });
 
-const MarkdownRenderer = ({ markdownText  }) => {
+const MarkdownRenderer = ({ markdownText }) => {
   // console.log('打印md fun 里面',markdownText )
   const getMarkdownText = () => {
-    const rawMarkup = marked(markdownText );
+    const rawMarkup = marked(markdownText);
     return { __html: rawMarkup };
   };
 
@@ -40,17 +40,48 @@ const MarkdownRenderer = ({ markdownText  }) => {
 export default MarkdownRenderer;
 
 
-          //配置下markdown
-    // const render = new marked.parse()
-    // marked.setOptions({
-    //     renderer:render,
-    //     gfm:true,
-    //     pedantic:false,
-    //     sanitize:false,
-    //     tables:true,
-    //     breaks:flase,
-    //     smarList:true,
-    //     highlight:function(code){
-    //         return hljs.highlightAuto(code).value
-    //     }
-    // })
+//配置下markdown
+// const render = new marked.parse()
+// marked.setOptions({
+//     renderer:render,
+//     gfm:true,
+//     pedantic:false,
+//     sanitize:false,
+//     tables:true,
+//     breaks:flase,
+//     smarList:true,
+//     highlight:function(code){
+//         return hljs.highlightAuto(code).value
+//     }
+// })
+
+
+
+
+// 最初版本
+// import { marked } from 'marked';
+// import hljs from 'highlight.js';
+// import 'highlight.js/styles/monokai-sublime.css'
+
+// // 设置 marked
+// marked.setOptions({
+//   renderer: new marked.Renderer(),
+//   // highlight: function(code, lang) {
+//   //   // 检查是否有提供语言
+//   //   const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+//   //   return hljs.highlight(code, { language }).value;
+//   // },
+//   langPrefix: 'hljs language-', // 用于 CSS 类名
+//   pedantic: false,
+//   gfm: true,
+//   breaks: true,
+//   sanitize: false,
+//   smartLists: true,
+//   smartypants: false,
+//   xhtml: false,
+//   highlight: function (code) {
+//     return hljs.highlightAuto(code).value
+//   }
+// });
+
+// export default marked;

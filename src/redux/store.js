@@ -45,11 +45,30 @@ const backgroundSlice = createSlice({
     }
 });
 
+const boxSize = createSlice({
+    name: 'boxsize',
+    initialState: {
+        size: '100vh'
+    },
+    reducers: {
+
+        boxSizeReducer: (state, action) => {
+
+            state.size = action.payload;
+            //console.log("444444S")
+
+        }
+
+    }
+});
+
 export const { backReducer } = backgroundSlice.actions;
+export const { boxSizeReducer } = boxSize.actions;
 
 const reducer = {
     // 定义一个名为 `todos` 的顶级 state 字段，值为 `todosReducer`
     back: backgroundSlice.reducer,
+    boxS: boxSize.reducer
 }
 
 const store = configureStore({
