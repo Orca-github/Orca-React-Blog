@@ -25,3 +25,8 @@
     display: inline-block;
     padding-left:.3rem ;
 }
+
+.right{
+    justify-content: right;
+    position:absolute
+}

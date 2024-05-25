@@ -1,0 +1,61 @@
+/* 初始化 */
+*{
+    
+    margin: 0;
+    padding: 0;
+}
+
+/* 海平面 */
+.sea{
+    width: 100%;
+    height: 0%;
+    background-color: #9ca3cbb0;
+    /* 绝对定位 底部 */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.wave{
+    /* 这里的背景用的是svg文件，这个文件我事先在PS里做好并导出 */
+    background: url("/wave2.svg") repeat-x;
+    opacity: 0.4;
+    width: 4320px;
+    height: 500px;
+    /* 绝对定位 */
+    position: absolute;
+    bottom: -300px;
+    /* 执行波动动画：动画名 时长 贝塞尔曲线 无限次播放 */
+    animation: wave 8s cubic-bezier(0.36,0.45,0.63,0.53) infinite;
+
+    
+}
+.wave:nth-child(2){
+    bottom:-280px;
+    /* 执行波动+上下浮动动画 */
+    animation: wave 10s cubic-bezier(0.36,0.45,0.63,0.53) infinite,swell 8s ease infinite;
+    animation-delay: -0.5s;
+
+}
+
+/* 定义动画 */
+/* 波动动画 */
+@keyframes wave {
+    0%{
+        margin-left: 0;
+        /* transform: translateX(0); */
+    }
+    100%{
+        margin-left: -1203px;
+        /* transform: translateX(-1210px); 确保与背景图片宽度一致 */
+
+    }
+}
+/* 上下浮动动画 */
+@keyframes swell {
+    0%,100%{
+        transform: translate(0,-5px);
+    }
+    50%{
+        transform: translate(0,0px);
+    }
+}

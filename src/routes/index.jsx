@@ -6,7 +6,7 @@ import Detail from '../component/Detail'
 import ArticlePage from '../component/ArticlePage'
 import TypeId_List from '../component/TypeId_List'
 import FullScreen from '../component/Home/FullScreen'
-
+import ArticleType from '../component/ArticleType'
 export default [
 
     {
@@ -23,6 +23,8 @@ export default [
         path:'/detail/:id',
         element:<Detail/>
     }
+    ,{ path: '/type', element: <ArticleType /> }
+
     ,{ path: '/index', element: <FullScreen /> }
 
 

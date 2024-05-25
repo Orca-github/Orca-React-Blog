@@ -3,7 +3,7 @@
     width: 100%;
     padding: 1rem;
     color: #3d3b3b;
-    background-image: linear-gradient(135deg, #a8ede9c1 , #fed6e3bf , #eaccf8c1, #9890e3c8 );
+    background-image: linear-gradient(135deg, #a8ede9f5 , #fed6e3f5 , #eaccf8f9, #9890e3f4 );
     font-size: 14px;
     background-size: 500%;
     animation: gradient-move 15s linear infinite;
@@ -21,3 +21,10 @@
       background-position: 0% 50%;
     }
   }
+
+  .sssss{
+    color:rgba(41, 48, 63, 0.55),
+/*rgba(168, 196, 249, 0.757)*/
+  }
+
+  

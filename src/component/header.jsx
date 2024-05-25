@@ -75,12 +75,13 @@ export default function header() {
   return (
     <div className='header'>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
           <Grid item xs={6}>
             <span className='header-logo'>Orca</span>
             <span className='header-txt'>Blog</span>
           </Grid>
-          <Grid item xs={6}>
+          {/**按钮 */}
+          <Grid item xs={6} style={{ display: 'flex', justifyContent: 'flex-end' }} >
 
             <Button
               id="basic-button"
@@ -97,7 +98,7 @@ export default function header() {
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
             >
-              op2
+              Article
             </Button>
             <Menu
               id="basic-menu2"
@@ -108,14 +109,38 @@ export default function header() {
                 'aria-labelledby': 'basic-button2',
               }}
             >
-              <MenuItem onClick={(event) => handleClose(event, 'path')}>Profile</MenuItem>
-              <MenuItem onClick={(event) => handleClose(event, 'path')}>My account</MenuItem>
-              <MenuItem onClick={(event) => handleClose(event, 'path')}>Logout</MenuItem>
+              <MenuItem onClick={(event) => handleClose(event, 'path')}>Search</MenuItem>
+              <MenuItem onClick={(event) => handleClose(event, 'path')}>Type</MenuItem>
             </Menu>
+
+            <Button
+              id="basic-button"
+              aria-haspopup="true"
+              onClick={(event) => handleGo(event, '/project')}
+            >
+              Project
+            </Button>
+
+            <Button
+              id="basic-button"
+              aria-haspopup="true"
+              onClick={(event) => handleGo(event, '/index')}
+            >
+              About
+            </Button>
+
+            <Button
+              id="basic-button"
+              aria-haspopup="true"
+              onClick={(event) => handleGo(event, '/index')}
+            >
+              Contact
+            </Button>
+            </Grid>
 
             {/*下面是动态生成的*/}
 
-            {
+            {/* {
               navArray.map((typeItem) => {
                 return (<Button key={typeItem.id}
                   onClick={(event) => handleGo(event, 'list/', typeItem.id)}
@@ -123,10 +148,10 @@ export default function header() {
                   {typeItem.typeName}
                 </Button>)
               })
-            }
+            } */}
 
           </Grid>
-        </Grid>
+          
       </Box>
     </div>
   )

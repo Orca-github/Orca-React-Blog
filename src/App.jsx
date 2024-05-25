@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+// import './App.css'
 import Header from './component/header'
 import Footer from './component/Footer'
 import { useRoutes, useLocation } from 'react-router-dom'
@@ -13,12 +13,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { boxSizeReducer } from './redux/store'
 import MainView from './component/Home/MainView'
 import ParticlesBackground from './ParticlesBackground'
+
+import ExpandBtn from './component/Home/ExpandBtn'
+import WaveWapper from './component/Home/WaveWapper'
+
 function App() {
   const element = useRoutes(routes)
   const backgroundImage = useSelector(state => state.back.backgroundImage);
 
   const location = useLocation();
   const showMainView = location.pathname === '/'; // 替换 '/specific-route' 为实际路径
+
+  const contentRef = useRef(null);
 
   //设置顶图
   let boxSize = "100vh"
@@ -28,9 +34,9 @@ function App() {
   return (
     <>
       {/* // 动态粒子效果 */}
-      {/* <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}> */}
-      <ParticlesBackground />
-      {/* </Box> */}
+      <Box sx={{ position: 'relative', zIndex: 0 }}>
+        <ParticlesBackground />
+      </Box>
 
       <Box sx={{
         height: `${boxSize}`, // Full viewport height
@@ -47,22 +53,39 @@ function App() {
         zIndex: 3,
         // padding: '64px' ,// 设置四个边的 padding 为 64px
         overflow: 'hidden', // 确保内容不会超出背景范围
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '5px', // 边框高度
+          background: 'linear-gradient(to bottom,#637d9de7 20%, #535a7eda 90% )'
+          // #637d9de7 50%, #535a7eda 50%
+        }
+
+
+
       }}>
 
-          <Header />
+        <WaveWapper />
+        <Header />
 
-        {showMainView && <MainView />}
+        {showMainView && <>
+          <MainView />
+          <ExpandBtn scrollToContent={() => contentRef.current.scrollIntoView({ behavior: 'smooth' })} />
+
+        </>
+        }
         {/* {!showMainView &&
           <Box >
             {element}
           </Box>} */}
-
       </Box>
-
 
       {/* {showMainView &&
         <Box >{element}</Box>} */}
-      <Box sx={{ position: 'relative', zIndex: 2, padding: '2px', width: '100%' }}>
+      <Box sx={{ position: 'relative', zIndex: 2, paddingTop: '1.5%', paddingBottom: "2px", width: '100%' }} ref={contentRef}>
         {element}
       </Box>
       <Box sx={{ position: 'relative', zIndex: 2, width: '100%' }}>

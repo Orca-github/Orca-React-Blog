@@ -1,0 +1,29 @@
+.exDiv {
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+
+.exBtn {
+    width: 100%;
+    background-color: rgba(196, 202, 214, 0.11);
+    height: 4%;
+}
+
+.exIco {
+        /* 上下浮动动画 */
+    animation: swell 4s ease-in-out infinite;
+}
+
+@keyframes swell {
+
+    0%,
+    100% {
+        transform: translateY(-8px);
+    }
+
+    50% {
+        transform: translateY(8px);
+        /* 您可以根据需要调整这个值 */
+    }
+}
