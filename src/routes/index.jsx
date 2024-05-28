@@ -7,6 +7,11 @@ import ArticlePage from '../component/ArticlePage'
 import TypeId_List from '../component/TypeId_List'
 import FullScreen from '../component/Home/FullScreen'
 import ArticleType from '../component/ArticleType'
+import ArticleSearch from '../component/ArticleSearch'
+import Project from '../component/Project'
+import About from '../component/About'
+import Contact from '../component/Contact'
+
 export default [
 
     {
@@ -24,6 +29,14 @@ export default [
         element:<Detail/>
     }
     ,{ path: '/type', element: <ArticleType /> }
+    ,{ path: '/search', element: <ArticleSearch /> }
+
+    ,{ path: '/project', element: <Project /> }
+
+    ,{ path: '/about', element: <About /> }
+    ,{ path: '/contact', element: <Contact /> }
+
+
 
     ,{ path: '/index', element: <FullScreen /> }
 

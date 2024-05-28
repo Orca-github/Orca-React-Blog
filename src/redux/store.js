@@ -5,6 +5,7 @@ import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 //引入redux-thunk 用于支持异步action
 // import {thunk} from 'redux-thunk'
 //由于使用的是 configureStore 自动配置了 thunk
+import servicePath from '../config/apiUrl';
 
 
 // 异步 thunk action 
@@ -62,13 +63,32 @@ const boxSize = createSlice({
     }
 });
 
+const findList = createSlice({
+    name: 'findList',
+    initialState: {
+        apiValue: servicePath.getArticleList
+    },
+    reducers: {
+
+        findListReducer: (state, action) => {
+
+            state.apiValue = action.payload;
+            //console.log("444444S")
+
+        }
+
+    }
+});
+
 export const { backReducer } = backgroundSlice.actions;
 export const { boxSizeReducer } = boxSize.actions;
+export const {findListReducer} = findList.actions;
 
 const reducer = {
     // 定义一个名为 `todos` 的顶级 state 字段，值为 `todosReducer`
     back: backgroundSlice.reducer,
-    boxS: boxSize.reducer
+    boxS: boxSize.reducer,
+    findL:findList.reducer,
 }
 
 const store = configureStore({

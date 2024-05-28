@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ArticleType() {
+export default function Project() {
   return (
     <div>
-      123
+      
     </div>
   )
 }

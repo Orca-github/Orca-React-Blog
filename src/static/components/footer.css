@@ -7,7 +7,7 @@
     font-size: 14px;
     background-size: 500%;
     animation: gradient-move 15s linear infinite;
-
+    height: 2rem;
 }
 
 @keyframes gradient-move {

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ArticleType() {
+export default function Contact() {
   return (
     <div>
-      123
+      
     </div>
   )
 }

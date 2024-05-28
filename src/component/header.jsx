@@ -34,19 +34,21 @@ export default function header() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (event, path) => {
-    console.log(event)
+    useNav(path)
     setAnchorEl(null);
   };
   //路由跳转
   const useNav = useNavigate()//这个定义必须写在函数组件的顶层 
 
   const handleGo = (event, path, id) => {
-    console.log('type id is :', id)
-    if (path) {
-      console.log('go id is :', id)
+    if (path && id) {
 
       useNav(path + id)
     }
+    if (path && !id){
+      useNav(path)
+    }
+    
 
   };
 
@@ -108,9 +110,10 @@ export default function header() {
               MenuListProps={{
                 'aria-labelledby': 'basic-button2',
               }}
+              disableScrollLock={true}
             >
-              <MenuItem onClick={(event) => handleClose(event, 'path')}>Search</MenuItem>
-              <MenuItem onClick={(event) => handleClose(event, 'path')}>Type</MenuItem>
+              <MenuItem onClick={(event) => handleClose(event, '/search')}>Search</MenuItem>
+              <MenuItem onClick={(event) => handleClose(event, '/type')}>Type</MenuItem>
             </Menu>
 
             <Button
@@ -124,7 +127,7 @@ export default function header() {
             <Button
               id="basic-button"
               aria-haspopup="true"
-              onClick={(event) => handleGo(event, '/index')}
+              onClick={(event) => handleGo(event, '/about')}
             >
               About
             </Button>
@@ -132,7 +135,7 @@ export default function header() {
             <Button
               id="basic-button"
               aria-haspopup="true"
-              onClick={(event) => handleGo(event, '/index')}
+              onClick={(event) => handleGo(event, '/contact')}
             >
               Contact
             </Button>

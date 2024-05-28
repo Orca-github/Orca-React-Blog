@@ -22,7 +22,7 @@ function App() {
   const backgroundImage = useSelector(state => state.back.backgroundImage);
 
   const location = useLocation();
-  const showMainView = location.pathname === '/'; // 替换 '/specific-route' 为实际路径
+  const showMainView = location.pathname === '/'  || location.pathname === '/index'; // 替换 '/specific-route' 为实际路径
 
   const contentRef = useRef(null);
 
@@ -33,6 +33,7 @@ function App() {
   }
   return (
     <>
+    <Box sx={{ position: 'relative', zIndex: 2, width: '100%',minHeight:"100vh" }}>
       {/* // 动态粒子效果 */}
       <Box sx={{ position: 'relative', zIndex: 0 }}>
         <ParticlesBackground />
@@ -85,12 +86,14 @@ function App() {
 
       {/* {showMainView &&
         <Box >{element}</Box>} */}
-      <Box sx={{ position: 'relative', zIndex: 2, paddingTop: '1.5%', paddingBottom: "2px", width: '100%' }} ref={contentRef}>
+      <Box sx={{ position: 'relative', zIndex: 2, paddingTop: '1.5%', paddingBottom: "4rem", width: '100%' }} ref={contentRef}>
         {element}
+        
       </Box>
-      <Box sx={{ position: 'relative', zIndex: 2, width: '100%' }}>
+      <Box sx={{ position: 'absolute', zIndex: 2, width: '100%' ,bottom:0}}>
 
         <Footer />
+      </Box>
       </Box>
     </>
   )
