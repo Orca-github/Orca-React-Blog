@@ -14,8 +14,12 @@ export default function Author() {
             所有被风吹过的树都显得有神
         </div>
         <Divider>social media</Divider>
-        <GitHubIcon/>
+        <a href="https://github.com/Orca-github" target="_blank" rel="noopener noreferrer">
+          <GitHubIcon />
+        </a>
+        <a href="https://www.linkedin.com/in/songhong-li/" target="_blank" rel="noopener noreferrer">
         <LinkedInIcon/>
+        </a>
     </div>
   )
 }

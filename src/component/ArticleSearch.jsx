@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Box from '@mui/material/Box';
 import servicePath from '../config/apiUrl';
-import TypeId_List from './TypeId_List';
+import ArticleList from './ArticleList';
 import { useDispatch } from 'react-redux';
 import { findListReducer } from '../redux/store';
 
@@ -61,8 +61,8 @@ export default function ArticleSearch() {
 
       {showList && (
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center',paddingBottom:"3rem" }}>
-          <Box sx={{ width: '80%' }}>
-            <TypeId_List />
+          <Box sx={{ width: '60%' }}>
+            <ArticleList />
           </Box>
         </Box>
       )}

@@ -4,13 +4,13 @@ import ArticleBrecrumb from '../component/ArticleBrecrumb'
 import Detail from '../component/Detail'
 // import MainPage from '../component/main_page'
 import ArticlePage from '../component/ArticlePage'
-import TypeId_List from '../component/TypeId_List'
+import ArticleList from '../component/ArticleList'
 import FullScreen from '../component/Home/FullScreen'
 import ArticleType from '../component/ArticleType'
 import ArticleSearch from '../component/ArticleSearch'
 import Project from '../component/Project'
 import About from '../component/About'
-import Contact from '../component/Contact'
+// import Contact from '../component/Contact'
 
 export default [
 
@@ -19,7 +19,7 @@ export default [
         element:<ArticlePage/>,
         children:[{
             path:':id',
-            element:<TypeId_List/>
+            element:<ArticleList/>
         }
         ]
     },
@@ -34,7 +34,7 @@ export default [
     ,{ path: '/project', element: <Project /> }
 
     ,{ path: '/about', element: <About /> }
-    ,{ path: '/contact', element: <Contact /> }
+    // ,{ path: '/contact', element: <Contact /> }
 
 
 

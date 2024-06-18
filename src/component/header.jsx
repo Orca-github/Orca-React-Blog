@@ -132,13 +132,13 @@ export default function header() {
               About
             </Button>
 
-            <Button
+            {/* <Button
               id="basic-button"
               aria-haspopup="true"
               onClick={(event) => handleGo(event, '/contact')}
             >
               Contact
-            </Button>
+            </Button> */}
             </Grid>
 
             {/*下面是动态生成的*/}

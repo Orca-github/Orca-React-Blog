@@ -67,7 +67,7 @@ export default function Detail() {
             <Grid container spacing={0.5} columns={16} justifyContent="center" >
                 <Grid className='comm-left' xs={8} sx={{ minHeight: '80vh' }} >
                     {/*面包导航 */}
-                    <div className="bread-div">
+                    {/* <div className="bread-div">
                         <Breadcrumbs aria-label="breadcrumb">
                             <StyledBreadcrumb
                                 component="a"
@@ -81,7 +81,7 @@ export default function Detail() {
                                 deleteIcon={<ExpandMoreIcon />}
                             />
                         </Breadcrumbs>
-                    </div>
+                    </div> */}
 
                     <div>
                         {/*标题 */}

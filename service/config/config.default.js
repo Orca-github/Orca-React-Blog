@@ -59,7 +59,11 @@ module.exports = appInfo => {
     credentials:true,//允许cookie 跨域
     allowMethods:'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
   };
-
+  //日志级别设置
+  config.logger = {
+    level: 'INFO',
+    consoleLevel: 'INFO',
+};
 
   return {
     ...config,

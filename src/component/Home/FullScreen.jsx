@@ -20,9 +20,9 @@ const FullScreen = () => {
 
   return (
     <>
-      <Box sx={{ position: 'relative', overflow: 'hidden' }}>
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1, 
-        // backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+      <Box sx={{ position: 'relative', overflow: 'hidden'}}>
+        <Container sx={{ position: 'relative', zIndex: 1, 
+         backgroundColor: 'rgba(255, 255, 255, 0.1)', 
         padding: '24px', borderRadius: '8px' }}>
 
           <MainPage />

@@ -5,7 +5,7 @@ let servicePath={
     getArticleList:ipUrl+'/getArticleList',
     getArticleById:ipUrl+'/getArticleById/',
     getTypeInfo:ipUrl+'/getTypeInfo',
-    getListById:ipUrl+'/getListById/',
+    getListById:ipUrl+'/getListById/',//根据类别id获得文章列表
     getListByDetail:ipUrl+'/getListByDetail/'
 }
 

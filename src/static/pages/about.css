@@ -1,0 +1,72 @@
+.author-div{
+    text-align: center;
+     padding: 1rem !important;
+
+
+    background-color: #FFF;
+    margin-left: .5rem;
+    padding:.3rem;
+    /* border-radius: .3rem; */
+    /* border:1px solid #eee; */
+    border:none;
+   
+}
+
+.author-img{
+    display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.author-div div{
+    margin-bottom: 1rem;
+
+}
+.author-introduction{
+    font-size:.8rem;
+    color: #999;
+    
+}
+.account{
+    background-color: #999;
+    margin-left: .5rem !important;
+    margin-right: .5rem !important;
+}
+.author-name{
+    font-size: 1rem;
+    color: #1890ff;
+}
+.author-tag{
+    line-height: 27px;
+}
+
+.ant-avatar-image{
+    background: #ccc !important;
+}
+/**/
+
+.wordCloud__tagBall {
+    margin: 50px auto;
+    position: relative;
+  }
+  
+  .wordCloud__tag {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: green;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: '微软雅黑';
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .wordCloud__tag:hover {
+    color: red !important;
+  }
+  
+  .wordCloud__home {
+    display: flex;
+    justify-content: center;
+  }
