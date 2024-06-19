@@ -1,0 +1,5 @@
+[submodule "service"]
+	path = service
+	url = https://github.com/Orca-github/Blog-EggServer.git
+[submodule "admin"]
+	path = admin
