@@ -3,3 +3,4 @@
 	url = https://github.com/Orca-github/Blog-EggServer.git
 [submodule "admin"]
 	path = admin
+	url = https://github.com/Orca-github/Blog-Backend.git
