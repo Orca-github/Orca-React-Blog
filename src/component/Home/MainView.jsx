@@ -12,7 +12,7 @@ const TypedEffect = () => {
   return (
     <ReactTyped
       strings={[
-        "所有被风吹过的树都显得有神...11111232323......",
+        "所有被风吹过的树都显得有神",
         "Sharing my thoughts and experiences.",
         "Stay tuned for more updates."
       ]}
